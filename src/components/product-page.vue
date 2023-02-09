@@ -7,6 +7,7 @@
             <p @click="reviewsOnDisplay">Отзывы:</p>
             <reviewProduct v-if="reviewsClick" />
             <reviewButton v-if="isAutorisatoin && reviewsClick"/>
+            <p v-else-if="!isAutorisatoin && reviewsClick" class="blueText">Чтобы оставить отзыв войдите или зарегистрируйтесь</p>
         </div>
         <div class="leftClass">
             <p>Сопутствующие товары:</p>
@@ -38,7 +39,7 @@ export default {
             class1: "blockClass1",
             title2: "Аудиотехника",
             title3: "Аксессуары",
-            isAutorisatoin: true
+            isAutorisatoin: false
         };
     },
     computed: {},
@@ -75,6 +76,11 @@ h4 {
 .leftClass{
     
     left: 5%;
+}
+.blueText{
+    text-decoration-line: underline;
+    color: #00a2e8;
+
 }
 .imageClass{
     width: 5%;
