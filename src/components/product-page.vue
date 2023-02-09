@@ -1,68 +1,84 @@
 <template>
-    <div class="product-page"  id="borderNone">
-        <productCard/> 
+    <div class="product-page" id="borderNone">
+        <productCard />
+        <div class="widthClass">
+            <p @click="specificationsOnDisplay">Характеристики:</p>
+            <h4 v-if="specificationsClick">{{ specifications }}</h4>
+            <p @click="reviewsOnDisplay">Отзывы:</p>
+            <reviewProduct v-if="reviewsClick" />
+            <reviewButton v-if="isAutorisatoin && reviewsClick"/>
+        </div>
         <div class="leftClass">
-        <p @click="specificationsOnDisplay"> Характеристики: </p>
-        <h4 v-if="specificationsClick"> {{ specifications }} </h4>
-        <p @click="reviewsOnDisplay"> Отзывы: </p>
-        <h4 v-if="reviewsClick"> {{ rewiews }} </h4>
-        <p> Сопутствующие товары: </p>
-        <h4 >{{ relateds }}</h4>
+            <p>Сопутствующие товары:</p>
+        <h4>{{ relateds }}</h4>
         </div>
     </div>
 </template>
 
 <script>
-import productCard from './product-card.vue'
+import reviewProduct from "./review-product.vue";
+import productCard from "./product-card.vue";
+import reviewButton from "./review-button.vue";
 export default {
     name: "product-page",
     components: {
-        productCard
+        productCard,
+        reviewProduct,
+        reviewButton
     },
     props: {},
     data() {
         return {
             specificationsClick: false,
             reviewsClick: false,
-            relateds: 'Извините, сопутствующих товаров не найдено :(',
-            rewiews: 'какие-то отзывы',
-            specifications: 'какие-то характеристики товара',
+            relateds: "Извините, сопутствующих товаров не найдено :(",
+            rewiews: "какие-то отзывы",
+            specifications: "Цвет......................................Белый Емкость аккумулятора......160mWh Bluetooth...............................5 Модель.................................AirPods Pro Страна..................................Китай",
             title: "Смартфоны",
             class1: "blockClass1",
             title2: "Аудиотехника",
             title3: "Аксессуары",
+            isAutorisatoin: true
         };
     },
     computed: {},
     methods: {
         specificationsOnDisplay() {
-                    this.specificationsClick = !this.specificationsClick
-                    this.reviewsClick = false
-                },
+            this.specificationsClick = !this.specificationsClick;
+            this.reviewsClick = false;
+        },
         reviewsOnDisplay() {
-                    this.reviewsClick = !this.reviewsClick
-                    this.specificationsClick = false
-                }
-    }
+            this.reviewsClick = !this.reviewsClick;
+            this.specificationsClick = false;
+        },
+    },
 };
 </script>
 
 <style scoped>
-.productPage{
+.productPage {
     border-width: 1px;
     border-color: rgba(0, 0, 0, 0.1);
     border-style: none none none none;
 }
-.leftClass{
-    position:fixed;
-    left: 5%;
-}
-p{
-    color:#ED1C24;
+p {
+    color: #ed1c24;
     text-decoration-line: underline;
     left: 0px;
 }
-h4{
-    color:rgba(0, 0, 0, 0.744);
+h4 {
+    color: rgba(0, 0, 0, 0.744);
+}
+.widthClass {
+    width: 40%;
+}
+.leftClass{
+    
+    left: 5%;
+}
+.imageClass{
+    width: 5%;
+    height: 5%;
+    margin: 5px 3px;
 }
 </style>
